@@ -1,69 +1,84 @@
 # Spaceship Game with Arduino
 
-<img width="676" height="679" alt="image" src="https://github.com/user-attachments/assets/0f128a63-f5d9-43c1-8137-0fb93dc5beb1" />
-
-<img width="275" height="149" alt="image" src="https://github.com/user-attachments/assets/70e02b37-2135-4189-9e12-4d7b03a4bac5" />
-
-<img width="260" height="141" alt="image" src="https://github.com/user-attachments/assets/5300a85c-8371-49b3-a796-31ae27d66149" />
+<p >
+  <table align="center">
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/70e02b37-2135-4189-9e12-4d7b03a4bac5" width="350" alt="Circuit Diagram">
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/5300a85c-8371-49b3-a796-31ae27d66149" width="350" alt="Game Screen">
+      </td>
+    </tr>
+  </table>
+</p>
 
 ## About the Project
 
-This project is a simple **Spaceship Game** built with **Arduino Uno**, push buttons, a 16x2 LCD display, and buzzers. The player controls a spaceship and avoids incoming obstacles while trying to achieve the highest score possible.
+This project is a simple **Spaceship Game** built with **Arduino Uno**, push buttons, a 16x2 LCD display, buzzers, and 7-segment displays. The player controls a spaceship, avoids obstacles, and tries to achieve the highest possible score.
 
-### Features
+The project was simulated on Wokwi:
+https://wokwi.com/projects/361939192052345857
 
-- LCD-based gameplay
-- Spaceship movement using buttons
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0f128a63-f5d9-43c1-8137-0fb93dc5beb1" width="500" alt="Project Preview">
+</p>
+
+
+---
+
+## Features
+
+- LCD-based game interface
+- Player-controlled spaceship movement
 - Obstacle generation and collision detection
-- Score tracking
-- Sound effects with buzzers
-- Increasing difficulty as the score rises
+- Real-time score tracking
+- Sound effects using buzzers
+- Increasing difficulty over time
 
-### Components Used
+---
+
+## Components Used
 
 - Arduino Uno
 - LCD1602 Display
 - Push Buttons
 - Buzzers
+- 7-Segment Display(s)
+- **74HC595 Shift Register**
 - Breadboard
 - Jumper Wires
 
-### Controls
+---
 
-| Button | Function |
-|----------|----------|
-| Up | Move spaceship up |
-| Down | Move spaceship down |
-| Action/Start | Start or restart the game |
+## Score Display System (74HC595)
 
-### How It Works
+The project uses **74HC595 shift registers** to drive the 7-segment displays while minimizing the number of Arduino I/O pins required.
 
-1. The game starts with a countdown.
-2. The spaceship appears on the left side of the LCD.
-3. Obstacles move from right to left.
-4. The player must avoid collisions.
-5. The score increases as obstacles are successfully avoided.
-6. The game speed gradually increases.
+When the player's score changes, the Arduino breaks the score into individual digits and sends the corresponding segment data serially to the **74HC595** shift registers. These registers then convert the serial data into parallel output, which directly controls the 7-segment displays.
+
+This approach allows multiple digits to be controlled using only a few Arduino pins.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e53ab52f-5575-4cfa-8829-8db564327141" width="500" alt="Project Preview">
+</p>
+
+### Advantages:
+- Reduces required Arduino pin usage
+- Supports multi-digit score display
+- Simplifies wiring complexity
+- Enables efficient serial-to-parallel data transfer
+
+---
+
 
 ## Simulation
 
-This project was originally downloaded from Wokwi:
+You can run and modify the project here:
 
-**Project URL:**  
 https://wokwi.com/projects/361939192052345857
-
-You can simulate and modify the project online using:
-
-**Wokwi Simulator:**  
-https://wokwi.com
-
-## Getting Started
-
-1. Open the project in Wokwi.
-2. Click **Start Simulation**.
-3. Use the buttons to control the spaceship.
-4. Avoid obstacles and try to achieve the highest score.
+---
 
 ## License
 
-This project is provided for educational and learning purposes.
+This project is for educational purposes.
